@@ -11,10 +11,14 @@ const app = express();
 
 app.use(express.json());
 
-const port = 3000 ;
+const port = process.env.PORT ;
 app.use(cors({
-  origin: "http://localhost:5173" 
+  origin: "*" 
 }));
+
+app.get('/', (req, res) => {
+  res.send('Welcome to the User Management API');
+});
 app.use("/api/users", userRouter);
 
 dbconnect();
